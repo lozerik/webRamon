@@ -1,0 +1,129 @@
+:root {
+   --tarjeta-height: 300px;
+   --tarjeta-width: calc(var(--tarjeta-height)/1.5);
+}
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    position: relative; /* Para que el posicionamiento absoluto funcione respecto al body */
+      overflow: hidden;
+}
+.header-text {
+    color: aliceblue;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    padding: 20px;
+  }
+  /* Contenedor para centrar las imágenes */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+    .tarjeta{
+        width: var(--tarjeta-height);
+        align-items: center;
+        height: var(--tarjeta-height);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0 36px;
+        perspective: 2500px;
+        margin: 0 50px;
+        border-radius: 5px;
+    }
+   .imagen-fondo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 5px;
+   }
+   .wrapper{
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%; 
+    z-index: -1;
+    border-radius: 5px;
+   }
+
+   .tarjeta:hover .wrapper{
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0,0,0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0,0,0,0.75);
+    border-radius: 5px;
+   }
+   .wrapper::before,
+   .wrapper::after{
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position:absolute;
+    left: 0;
+    border-radius: 5px;
+   }
+
+   .wrapper::before{
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        to top,
+        transparent 0%,
+        rgba(12,13,19,0.5) 68%,
+        rgba(12,13,19)97%
+    );
+    border-radius: 5px;
+   }
+   .wrapper::after{
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 60%,
+        rgba(12,13,19,0.5)68%
+        rgba(12,13,19,0.5)97%
+    );
+    border-radius: 5px;
+   }
+   .tarjeta:hover .wrapper::before,
+   .wrapper::after{
+    opacity: 1;
+   }
+   .tarjeta:hover .wrapper::after{
+    height: 120px;
+   }
+   .titulo{
+    width: 100%;
+    height: 120px;
+   }
+   .tarjeta:hover .titulo{
+    transform: translate3d(0%, -50px, 100px);
+   }
+
+    .personaje{
+        width: 100%;
+        opacity: 0;
+        transition: all 0.5s;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .tarjeta:hover .personaje{
+        opacity: 1;
+        transform: translate3d(0%,-30%, 100px);
+    }
